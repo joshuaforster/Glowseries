@@ -4,7 +4,7 @@ import { getHero } from "@/lib/contentful";
 export default async function Hero() {
   const content = await getHero();
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden h-[80]">
       {/* Background */}
       <div
         className="absolute inset-0 bg-gs-grey-2 bg-cover bg-center"
