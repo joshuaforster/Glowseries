@@ -44,3 +44,21 @@ export async function getMarquee() {
     ]
   }
 }
+
+export async function getMission() {
+  const res = await client.getEntries({ content_type: "mission" })
+  const fields = res.items[0]?.fields ?? {}
+
+  return {
+    eyebrow: (fields.eyebrowText as string) ?? "Manifesto · 01",
+    heading: (fields.heading as string) ?? "challenging the norm.",
+    body: [
+      (fields.bodyParagraph1 as string) ?? "glowseries is a studio that produces identity. Interior design packages, lookbooks, venetian plaster walls, and handcrafted statement furniture. The chair, the wall, the contact sheet.",
+      (fields.bodyParagraph2 as string) ?? "We transform commercial spaces — salons, hotels, airbnb properties, offices — into premium destinations. Designed to the detail. Installed in days.",
+    ],
+    cta: {
+      label: (fields.buttonText as string) ?? "Read the manifesto",
+      href: (fields.buttonLink as string) ?? "#services",
+    },
+  }
+}
