@@ -52,7 +52,7 @@ export default async function Hero() {
             {content.preheading}
           </div>
 
-          <h1 className="font-anton text-[clamp(80px,11vw,180px)] leading-[0.86] uppercase tracking-[-0.01em] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]">
+          <h1 className="font-anton text-[clamp(80px,11vw,180px)] leading-[0.86] uppercase tracking-[-0.01em] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)] max-w-[6ch]">
             {content.heading}
           </h1>
         </div>

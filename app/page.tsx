@@ -9,8 +9,10 @@ import Portfolio  from "@/components/Portfolio";
 import Lookbook   from "@/components/Lookbook";
 import Newsletter from "@/components/Newsletter";
 import Footer     from "@/components/Footer";
-
+export const revalidate = 0;
 export default function Home() {
+
+
   return (
     <>
       <Masthead />
