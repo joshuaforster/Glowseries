@@ -51,53 +51,56 @@ const content = {
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white">
-      <div className="px-8 pt-16 pb-10 md:px-16 md:pt-20">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <footer className="bg-black text-white" aria-label="Site footer">
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-10 sm:px-10 lg:px-16 lg:pt-20">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
+          {/* Brand */}
           <div>
             <div className="font-caveat text-2xl text-gs-paper mb-5">
               glow<span className="font-anton lowercase">series.</span>
             </div>
-            <p className="font-archivo text-sm leading-relaxed text-white/40 max-w-[28ch]">
+            <p className="font-archivo text-sm leading-relaxed max-w-[28ch]">
               {content.brand.tagline}
             </p>
           </div>
+
+          {/* Link columns */}
           {content.links.map((col) => (
-            <div key={col.heading}>
-              <h5 className="font-archivo text-[11px] font-bold uppercase tracking-widest text-white/40 mb-5">
+            <nav key={col.heading} aria-label={col.heading}>
+              <h2 className="font-archivo text-[11px] font-bold uppercase tracking-widest text-white/50 mb-5">
                 {col.heading}
-              </h5>
+              </h2>
               <ul className="flex flex-col gap-3">
                 {col.links.map((link) => (
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="font-archivo text-sm text-white/60 hover:text-white transition-colors"
+                      className="font-archivo text-sm text-white/75 hover:text-white transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gs-ink rounded-sm"
                     >
                       {link.label}
                     </a>
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
           ))}
         </div>
       </div>
-      <div className="border-t border-white/10 px-8 py-6 md:px-16 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <span className="font-mono text-[11px] tracking-wide text-white/30 uppercase">
+
+      {/* Bottom bar */}
+      <div className="border-t border-white/10 max-w-7xl mx-auto px-6 py-6 sm:px-10 lg:px-16 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <span className="font-mono text-[11px] tracking-wide text-white/50 uppercase">
           {content.copyright}
         </span>
-        <div className="flex gap-4 font-mono text-[11px] tracking-wide text-white/30 uppercase">
-          {content.legal.map((item, i) => (
-            <span key={item.label} className="flex items-center gap-4">
-              {i > 0 && <span className="text-white/20">·</span>}
-              <a
-                href={item.href}
-                className="hover:text-white/60 transition-colors"
-              >
-                {item.label}
-              </a>
-            </span>
+        <div className="flex gap-5 font-mono text-[11px] tracking-wide uppercase">
+          {content.legal.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="text-white/50 hover:text-white transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gs-ink rounded-sm"
+            >
+              {item.label}
+            </a>
           ))}
         </div>
       </div>

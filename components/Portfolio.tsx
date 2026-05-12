@@ -15,14 +15,22 @@ function PortfolioCard({ n, title, price, sub, badge, img }: PortfolioItem) {
       <div className="aspect-[3/4] bg-gs-grey-1 relative overflow-hidden">
         {img && (
           <div
+            role="img"
+            aria-label={title}
             className="absolute inset-0 bg-cover bg-center transition-transform duration-[600ms] group-hover:scale-[1.02]"
             style={{ backgroundImage: `url('${img}')` }}
           />
         )}
-        <div className="absolute top-4 left-4 font-archivo text-[10px] font-bold uppercase tracking-[.2em] bg-gs-paper text-gs-ink px-3 py-1.5 rounded-full">
+        <div
+          aria-hidden="true"
+          className="absolute top-4 left-4 font-archivo text-[10px] font-bold uppercase tracking-[.2em] bg-gs-paper text-gs-ink px-3 py-1.5 rounded-full"
+        >
           {badge}
         </div>
-        <div className="absolute left-4 bottom-4 font-anton text-[36px] leading-[0.95] uppercase text-gs-paper">
+        <div
+          aria-hidden="true"
+          className="absolute left-4 bottom-4 font-anton text-[36px] leading-[0.95] uppercase text-gs-paper"
+        >
           {n}.
         </div>
       </div>
@@ -45,19 +53,32 @@ export default async function Portfolio() {
   const content = await getPortfolio();
 
   return (
-    <section className="px-16 py-24 max-md:px-6 bg-[#F2F0E9]">
-      <div className="mb-14">
-        <p className="font-archivo text-[11px] font-bold uppercase tracking-[.22em] text-gs-grey-4 mb-4">
-          {content.eyebrow}
-        </p>
-        <h2 className="font-anton text-[clamp(56px,8vw,128px)] leading-[0.92] tracking-[-0.01em] uppercase m-0">
-          {content.heading}
-        </h2>
-      </div>
-      <div className="grid grid-cols-3 gap-x-5 gap-y-10 max-md:grid-cols-1">
-        {content.portfolio.map((item) => (
-          <PortfolioCard key={item.n} {...item} />
-        ))}
+    <section
+      aria-labelledby="portfolio-heading"
+      className="border-t border-black/10 bg-gs-paper"
+    >
+      <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
+        <div className="mb-14">
+          <p className="font-archivo text-[11px] font-bold uppercase tracking-[.22em] text-gs-grey-4 mb-4">
+            {content.eyebrow}
+          </p>
+          <h2
+            id="portfolio-heading"
+            className="font-anton text-[clamp(56px,8vw,128px)] leading-[0.92] tracking-[-0.01em] uppercase m-0"
+          >
+            {content.heading}
+          </h2>
+        </div>
+        <ul
+          role="list"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10"
+        >
+          {content.portfolio.map((item) => (
+            <li key={item.n}>
+              <PortfolioCard {...item} />
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
