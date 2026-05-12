@@ -1,61 +1,13 @@
-const content = {
-  heading: "Choose your tier.",
-  body: "Start with a digital concept. Upgrade to full installation. Or go straight to the complete glowseries treatment.",
-  footer: "Design packages available worldwide. Installation: Norwich, Norfolk & surrounding areas.",
-  packages: [
-    {
-      tier: "01",
-      name: "Design Concept",
-      price: "£149–249",
-      sub: "Digital · 7 working days",
-      features: [
-        "Full mood board. Your space, your aesthetic.",
-        "Colour palette. Walls, floors, furniture, accents.",
-        "Material and finish specification sheet.",
-        "Annotated floor plan with furniture layout.",
-        "Feature wall concept and finish details.",
-        "Lighting recommendations.",
-        "Shopping and sourcing guide.",
-        "One round of revisions included.",
-      ],
-      cta: "Get started",
-    },
-    {
-      tier: "02",
-      name: "Design + Consult",
-      price: "£349–499",
-      sub: "Digital + 1hr consultation · 7 days",
-      features: [
-        "Everything in the design concept package.",
-        "1-hour virtual walkthrough of your design.",
-        "Two rounds of revisions included.",
-        "Contractor-ready brief document.",
-        "Material sourcing with supplier links.",
-        "Priority 5-day turnaround.",
-        "30-day email support after delivery.",
-      ],
-      cta: "Book now",
-    },
-    {
-      tier: "03",
-      name: "Full Transformation",
-      price: "£800+",
-      sub: "Norwich & surrounding areas · quoted",
-      features: [
-        "Complete design concept package.",
-        "On-site consultation and space assessment.",
-        "Venetian plaster or microcement walls.",
-        "Bespoke handcrafted furniture commission.",
-        "Full installation by glowseries.",
-        "Professional photography included.",
-        "12-month commercial finish warranty.",
-      ],
-      cta: "Get a quote",
-    },
-  ],
-};
+import { getPackages } from "@/lib/contentful";
 
-type Package = (typeof content.packages)[number];
+type Package = {
+  tier: string;
+  name: string;
+  price: string;
+  sub: string;
+  features: string[];
+  cta: string;
+};
 
 function PackageCard({ tier, name, price, sub, features, cta }: Package) {
   return (
@@ -77,10 +29,7 @@ function PackageCard({ tier, name, price, sub, features, cta }: Package) {
       <div className="w-6 h-px bg-white/10" />
       <ul className="flex flex-col gap-2.5 flex-1">
         {features.map((f, i) => (
-          <li
-            key={i}
-            className="flex gap-2.5 font-archivo text-[13px] text-white leading-relaxed"
-          >
+          <li key={i} className="flex gap-2.5 font-archivo text-[13px] text-white leading-relaxed">
             <span className="text-white shrink-0">—</span>
             {f}
           </li>
@@ -96,7 +45,9 @@ function PackageCard({ tier, name, price, sub, features, cta }: Package) {
   );
 }
 
-export default function Packages() {
+export default async function Packages() {
+  const content = await getPackages();
+
   return (
     <section className="bg-black text-white px-16 py-24 border-t border-white/5 max-md:px-6">
       <div className="mb-16 pb-8 border-b border-white/10">
