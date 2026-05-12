@@ -1,4 +1,5 @@
 import { getPortfolio } from "@/lib/contentful";
+import Reveal from "@/components/Reveal";
 
 type PortfolioItem = {
   n: string;
@@ -11,12 +12,11 @@ type PortfolioItem = {
 
 function PortfolioCard({ n, title, price, sub, badge, img }: PortfolioItem) {
   return (
-    <div className="flex flex-col gap-4 group cursor-pointer">
+    <div className="flex flex-col gap-4 group">
       <div className="aspect-[3/4] bg-gs-grey-1 relative overflow-hidden">
         {img && (
           <div
-            role="img"
-            aria-label={title}
+            aria-hidden="true"
             className="absolute inset-0 bg-cover bg-center transition-transform duration-[600ms] group-hover:scale-[1.02]"
             style={{ backgroundImage: `url('${img}')` }}
           />
@@ -55,11 +55,11 @@ export default async function Portfolio() {
   return (
     <section
       aria-labelledby="portfolio-heading"
-      className="border-t border-black/10 bg-gs-paper bg-[#F3F1EA]"
+      className="border-t border-black/10 bg-[#F3F1EA]"
     >
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
-        <div className="mb-14">
-          <p className="font-archivo text-[11px] font-bold uppercase tracking-[.22em] text-gs-grey-4 mb-4">
+        <Reveal className="mb-14">
+          <p className="font-caveat text-xl italic tracking-wide text-gs-grey-4 mb-4">
             {content.eyebrow}
           </p>
           <h2
@@ -68,17 +68,19 @@ export default async function Portfolio() {
           >
             {content.heading}
           </h2>
-        </div>
-        <ul
-          role="list"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10"
-        >
-          {content.portfolio.map((item) => (
-            <li key={item.n}>
-              <PortfolioCard {...item} />
-            </li>
-          ))}
-        </ul>
+        </Reveal>
+        <Reveal delay={100}>
+          <ul
+            role="list"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10"
+          >
+            {content.portfolio.map((item) => (
+              <li key={item.n}>
+                <PortfolioCard {...item} />
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );

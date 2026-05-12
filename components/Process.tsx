@@ -1,4 +1,6 @@
 import { getProcess } from "@/lib/contentful";
+import Reveal from "@/components/Reveal";
+import Button from "@/components/Button";
 
 type Step = {
   n: string;
@@ -38,12 +40,12 @@ export default async function Process() {
   return (
     <section
       aria-labelledby="process-heading"
-      className="bg-gs-paper-2 bg-[#EAE8E1]"
+      className="bg-gs-paper-2"
     >
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_2fr] md:gap-20 md:items-start">
-          <div>
-            <p className="font-archivo text-[11px] font-bold uppercase tracking-[.22em] text-gs-grey-4 mb-5">
+          <Reveal>
+            <p className="font-caveat text-xl italic tracking-wide text-gs-grey-4 mb-5">
               {content.eyebrow}
             </p>
             <h2
@@ -56,19 +58,16 @@ export default async function Process() {
               {content.body}
             </p>
             <div className="mt-8">
-              <a
-                href={content.cta.href}
-                className="inline-flex items-center font-archivo text-[12px] font-bold uppercase tracking-[.2em] px-6 py-4 bg-gs-ink text-gs-paper border border-gs-ink rounded-full hover:bg-gs-grey-4 hover:border-gs-grey-4 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gs-ink focus-visible:ring-offset-2"
-              >
+              <Button variant="primary" theme="light" href={content.cta.href}>
                 {content.cta.label}
-              </a>
+              </Button>
             </div>
-          </div>
-          <div className="border-t border-black/10">
+          </Reveal>
+          <Reveal delay={120} className="border-t border-black/10">
             {content.steps.map((step) => (
               <StepRow key={step.n} {...step} />
             ))}
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

@@ -1,4 +1,6 @@
 import { getLookbook } from "@/lib/contentful";
+import Reveal from "@/components/Reveal";
+import Button from "@/components/Button";
 
 export default async function Lookbook() {
   const content = await getLookbook();
@@ -25,7 +27,7 @@ export default async function Lookbook() {
       </div>
 
       {/* Content panel */}
-      <div className="flex flex-col justify-center gap-7 bg-gs-paper px-6 py-12 sm:px-10 sm:py-16 lg:px-14 lg:py-20">
+      <Reveal delay={80} className="flex flex-col justify-center gap-7 bg-gs-paper px-6 py-12 sm:px-10 sm:py-16 lg:px-14 lg:py-20">
         <p className="font-archivo text-[11px] font-bold uppercase tracking-[.22em] text-gs-grey-4">
           {content.eyebrow}
         </p>
@@ -42,14 +44,11 @@ export default async function Lookbook() {
           {content.body}
         </p>
         <div>
-          <a
-            href={content.cta.href}
-            className="inline-flex items-center font-archivo text-[12px] font-bold uppercase tracking-[.2em] px-6 py-4 bg-gs-ink text-gs-paper border border-gs-ink rounded-full hover:bg-gs-grey-4 hover:border-gs-grey-4 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gs-ink focus-visible:ring-offset-2"
-          >
+          <Button variant="primary" theme="light" href={content.cta.href}>
             {content.cta.label}
-          </a>
+          </Button>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

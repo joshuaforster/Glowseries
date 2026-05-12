@@ -41,9 +41,9 @@ export default function Cursor() {
 
   return (
     <>
-      <div ref={dotRef}  className="fixed w-2 h-2 bg-gs-ink rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2" />
-      <div ref={ringRef} className="fixed w-7 h-7 border border-gs-ink rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 opacity-20"
-           style={{ transition: "transform .2s cubic-bezier(0.22,1,0.36,1), opacity .2s" }} />
+      <div ref={dotRef}  className="fixed w-2 h-2 bg-white rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2" style={{ mixBlendMode: "difference" }} />
+      <div ref={ringRef} className="fixed w-7 h-7 border border-white rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 opacity-80"
+           style={{ mixBlendMode: "difference", transition: "transform .2s cubic-bezier(0.22,1,0.36,1), opacity .2s" }} />
     </>
   );
 }

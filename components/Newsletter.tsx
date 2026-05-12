@@ -1,5 +1,5 @@
-
 import { getNewsletter } from "@/lib/contentful";
+import Reveal from "@/components/Reveal";
 
 export default async function Newsletter() {
   const content = await getNewsletter();
@@ -12,9 +12,8 @@ export default async function Newsletter() {
     >
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16 md:items-end">
-          {/* Heading */}
-          <div>
-            <p className="font-archivo text-[11px] font-bold uppercase tracking-[.22em] text-gs-grey-4 mb-5">
+          <Reveal>
+            <p className="font-caveat text-xl italic tracking-wide text-gs-grey-4 mb-5">
               {content.eyebrow}
             </p>
             <h3
@@ -23,10 +22,9 @@ export default async function Newsletter() {
             >
               {content.heading}
             </h3>
-          </div>
+          </Reveal>
 
-          {/* Form + booking */}
-          <div>
+          <Reveal delay={120}>
             <form action="#" method="post" noValidate>
               <label htmlFor="newsletter-email" className="sr-only">
                 {content.input.placeholder}
@@ -42,7 +40,8 @@ export default async function Newsletter() {
                 />
                 <button
                   type="submit"
-                  className="font-archivo font-bold text-[12px] uppercase tracking-[.2em] bg-transparent border-0 px-3 text-gs-ink hover:text-gs-grey-4 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gs-ink focus-visible:ring-offset-2 rounded-sm"
+                  aria-label="Subscribe to newsletter"
+                  className="font-archivo font-bold text-[12px] uppercase tracking-[.2em] bg-transparent border-0 px-3 text-gs-ink hover:text-gs-grey-4 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gs-ink focus-visible:ring-offset-2 rounded-sm btn-shimmer"
                 >
                   {content.input.submitLabel}
                 </button>
@@ -62,13 +61,13 @@ export default async function Newsletter() {
               <div className="mt-2 flex flex-wrap gap-3">
                 <a
                   href={content.booking.primaryCta.href}
-                  className="inline-flex items-center font-archivo text-[12px] font-bold uppercase tracking-[.2em] px-6 py-4 bg-gs-ink text-gs-paper border border-gs-ink rounded-full hover:bg-gs-grey-4 hover:border-gs-grey-4 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gs-ink focus-visible:ring-offset-2"
+                  className="btn-shimmer inline-flex items-center font-archivo text-[12px] font-bold uppercase tracking-[.2em] px-6 py-4 bg-gs-ink text-gs-paper border border-gs-ink rounded-full hover:bg-gs-grey-4 hover:border-gs-grey-4 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gs-ink focus-visible:ring-offset-2"
                 >
                   {content.booking.primaryCta.label}
                 </a>
                 <a
                   href={content.booking.secondaryCta.href}
-                  className="inline-flex items-center font-archivo text-[12px] font-bold uppercase tracking-[.2em] px-6 py-4 border border-gs-ink text-gs-ink rounded-full hover:bg-gs-ink hover:text-gs-paper transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gs-ink focus-visible:ring-offset-2"
+                  className="btn-shimmer inline-flex items-center font-archivo text-[12px] font-bold uppercase tracking-[.2em] px-6 py-4 border border-gs-ink text-gs-ink rounded-full hover:bg-gs-ink hover:text-gs-paper transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gs-ink focus-visible:ring-offset-2"
                 >
                   {content.booking.secondaryCta.label}
                 </a>
@@ -77,7 +76,7 @@ export default async function Newsletter() {
                 {content.booking.meta}
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

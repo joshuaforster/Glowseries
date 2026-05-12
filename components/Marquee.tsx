@@ -10,7 +10,7 @@ export default async function MarqueeSection() {
       className="bg-black py-3.5 overflow-hidden border-y border-white/80"
     >
       <div className="flex whitespace-nowrap">
-        <Marquee speed={30}>
+        <Marquee speed={30} pauseOnHover>
           {items.map((item, i) => (
             <span key={i} className="flex items-center shrink-0">
               <span className="font-archivo text-[11px] font-semibold uppercase tracking-[.22em] text-white/80 px-8">

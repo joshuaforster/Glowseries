@@ -1,4 +1,5 @@
 import { getServices } from "@/lib/contentful";
+import Reveal from "@/components/Reveal";
 
 type Service = {
   n: string;
@@ -9,7 +10,7 @@ type Service = {
 
 function ServiceCard({ n, title, body, tags }: Service) {
   return (
-    <div className="group p-8 sm:p-11 border-b border-black/10 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0 hover:bg-gs-ink transition-colors duration-200 hover:bg-black">
+    <div className="group p-8 sm:p-11 border-b border-black/10 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0 hover:bg-gs-ink transition-colors duration-200">
       <div
         aria-hidden="true"
         className="font-anton text-[48px] leading-none mb-6 group-hover:text-white transition-colors duration-200"
@@ -42,10 +43,10 @@ export default async function Services() {
   return (
     <section
       aria-labelledby="services-heading"
-      className="bg-gs-paper bg-[#F2F0E9]"
+      className="bg-[#F2F0E9]"
     >
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
-        <div className="grid grid-cols-1 gap-8 items-end mb-14 pb-8 border-b border-black/10 md:grid-cols-2 md:gap-12">
+        <Reveal className="grid grid-cols-1 gap-8 items-end mb-14 pb-8 border-b border-black/10 md:grid-cols-2 md:gap-12">
           <h2
             id="services-heading"
             className="font-anton text-[clamp(56px,8vw,120px)] leading-[0.92] tracking-[-0.01em] uppercase m-0"
@@ -55,12 +56,12 @@ export default async function Services() {
           <p className="font-archivo text-[16px] leading-relaxed text-gs-grey-4 max-w-[38ch] self-end">
             {content.body}
           </p>
-        </div>
-        <div className="grid grid-cols-1 border-t border-black/10 md:grid-cols-3">
+        </Reveal>
+        <Reveal delay={100} className="grid grid-cols-1 border-t border-black/10 md:grid-cols-3">
           {content.services.map((s) => (
             <ServiceCard key={s.n} {...s} />
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

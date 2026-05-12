@@ -1,4 +1,6 @@
 import { getPackages } from "@/lib/contentful";
+import Reveal from "@/components/Reveal";
+import Button from "@/components/Button";
 
 type Package = {
   tier: string;
@@ -9,38 +11,70 @@ type Package = {
   cta: string;
 };
 
-function PackageCard({ tier, name, price, sub, features, cta }: Package) {
+function PackageCard({
+  tier,
+  name,
+  price,
+  sub,
+  features,
+  cta,
+  featured,
+}: Package & { featured?: boolean }) {
   return (
-    <div className="flex flex-col gap-6 p-8 sm:p-10 border-b border-white/10 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
+    <div
+      className={`card-lift relative flex flex-col gap-8 px-8 py-12 sm:px-10 sm:py-14 ${
+        featured ? "card-featured-pulse bg-gs-paper text-gs-ink" : "bg-transparent text-white"
+      }`}
+    >
+      {featured && (
+        <span className="absolute top-7 right-7 font-archivo text-[9px] font-bold uppercase tracking-[.3em] bg-gs-ink text-gs-paper px-3 py-1.5 rounded-full">
+          Recommended
+        </span>
+      )}
+
+      {/* Tier + name */}
       <div>
-        <p className="font-mono text-[10px] text-white/50 uppercase tracking-widest mb-3">
-          Tier · {tier}
+        <p className={`font-caveat text-2xl italic mb-1.5 ${featured ? "text-gs-grey-4" : "text-gs-grey-2"}`}>
+          {tier}
         </p>
-        <p className="font-archivo text-[13px] font-bold uppercase tracking-[.06em] text-white mb-4">
+        <p className="font-archivo text-[14px] font-bold uppercase tracking-[.1em]">
           {name}
         </p>
-        <div className="font-anton text-[56px] text-white leading-none">
-          {price}
+      </div>
+
+      {/* Price */}
+      <div>
+        <div className="font-anton text-[72px] leading-[0.88] mb-2" aria-label={price}>
+          <span aria-hidden="true">{price}</span>
         </div>
-        <p className="font-mono text-[10px] text-white/50 uppercase tracking-wide mt-1">
+        <p className={`font-archivo text-[11px] uppercase tracking-[.18em] ${featured ? "text-gs-grey-4" : "text-gs-grey-2"}`}>
           {sub}
         </p>
       </div>
-      <div className="w-6 h-px bg-white/10" aria-hidden="true" />
-      <ul className="flex flex-col gap-2.5 flex-1" aria-label={`${name} features`}>
+
+      <div aria-hidden="true" className={`w-full h-px ${featured ? "bg-gs-grey-1" : "bg-white/20"}`} />
+
+      {/* Features */}
+      <ul className="flex flex-col gap-4 flex-1" aria-label={`${name} features`}>
         {features.map((f, i) => (
-          <li key={i} className="flex gap-2.5 font-archivo text-[13px] text-white/80 leading-relaxed">
-            <span aria-hidden="true" className="text-white/40 shrink-0">—</span>
+          <li
+            key={i}
+            className={`flex gap-3 font-archivo text-[14px] leading-relaxed ${featured ? "text-gs-grey-4" : "text-white"}`}
+          >
+            <span aria-hidden="true" className={`shrink-0 ${featured ? "text-gs-grey-3" : "text-gs-grey-2"}`}>—</span>
             {f}
           </li>
         ))}
       </ul>
-      <a
+
+      <Button
+        variant={featured ? "primary" : "secondary"}
+        theme={featured ? "light" : "dark"}
         href="#contact"
-        className="block text-center py-3.5 font-archivo text-[11px] font-bold uppercase tracking-[.2em] border border-white/20 text-white/50 rounded-full hover:border-white hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+        className="w-full justify-center"
       >
         {cta}
-      </a>
+      </Button>
     </div>
   );
 }
@@ -52,26 +86,29 @@ export default async function Packages() {
     <section
       aria-labelledby="packages-heading"
       data-theme="dark"
-      className="bg-black text-white border-t border-white/5"
+      className="bg-black text-white border-t border-white"
     >
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
-        <div className="mb-16 pb-8 border-b border-white/10">
+
+        <Reveal className="mb-16 pb-10 border-b border-white flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <h2
             id="packages-heading"
-            className="font-anton text-[clamp(56px,7vw,110px)] leading-[0.92] uppercase text-white mb-4"
+            className="font-anton text-[clamp(56px,7vw,110px)] leading-[0.92] uppercase text-white"
           >
             {content.heading}
           </h2>
-          <p className="font-archivo text-[16px] leading-relaxed text-white/40 max-w-[36ch]">
+          <p className="font-archivo text-[16px] leading-relaxed text-gs-grey-2 max-w-[36ch] md:pb-3">
             {content.body}
           </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 border border-white/10">
-          {content.packages.map((p) => (
-            <PackageCard key={p.tier} {...p} />
+        </Reveal>
+
+        <Reveal delay={100} className="grid grid-cols-1 md:grid-cols-3 border border-white divide-y divide-white/10 md:divide-y-0 md:divide-x md:divide-white">
+          {content.packages.map((p, i) => (
+            <PackageCard key={p.tier} {...p} featured={i === 1} />
           ))}
-        </div>
-        <p className="text-center mt-10 font-mono text-[10px] uppercase tracking-widest text-white/20">
+        </Reveal>
+
+        <p className="text-center mt-12 font-archivo text-[11px] uppercase tracking-widest text-gs-grey-3">
           {content.footer}
         </p>
       </div>

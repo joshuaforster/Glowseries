@@ -6,13 +6,11 @@ export default async function Hero() {
   return (
     <section
       aria-label="Hero"
-
       className="relative overflow-hidden text-white min-h-[85vh] max-h-[950px] flex flex-col justify-end bg-gs-grey-2"
     >
       {/* Background */}
       <div
-        role="img"
-        aria-label={content.heading}
+        aria-hidden="true"
         className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
         style={{ backgroundImage: content.backgroundImage }}
       />
@@ -39,7 +37,7 @@ export default async function Hero() {
 
       {/* Main Content */}
       <div className="relative z-10 w-full">
-        <div className="mx-auto max-w-7xl px-6 pb-16 md:px-12 md:pb-24">
+        <div className="mx-auto max-w-7xl px-6 pb-16 md:px-12 md:pb-50">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-16 items-end">
 
             {/* Left — Headline */}
@@ -50,10 +48,10 @@ export default async function Hero() {
                   {content.eyebrow}
                 </p>
               </div>
+              <p aria-hidden="true" className="font-archivo text-base md:text-xl font-medium tracking-[0.4em] mb-4 text-white uppercase">
+                {content.preheading}
+              </p>
               <h1 className="font-anton text-[clamp(64px,10vw,160px)] leading-[0.85] uppercase tracking-tighter text-white drop-shadow-2xl">
-                <span className="block font-archivo text-base md:text-xl font-medium tracking-[0.4em] mb-4 text-white uppercase">
-                  {content.preheading}
-                </span>
                 {content.heading}
               </h1>
             </div>
