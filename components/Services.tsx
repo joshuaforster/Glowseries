@@ -9,7 +9,7 @@ type Service = {
 
 function ServiceCard({ n, title, body, tags }: Service) {
   return (
-    <div className="group p-8 sm:p-11 border-b border-black/10 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0 hover:bg-gs-ink transition-colors duration-200">
+    <div className="group p-8 sm:p-11 border-b border-black/10 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0 hover:bg-gs-ink transition-colors duration-200 hover:bg-black">
       <div
         aria-hidden="true"
         className="font-anton text-[48px] leading-none mb-6 group-hover:text-white transition-colors duration-200"
@@ -42,7 +42,7 @@ export default async function Services() {
   return (
     <section
       aria-labelledby="services-heading"
-      className="bg-gs-paper"
+      className="bg-gs-paper bg-[#F2F0E9]"
     >
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
         <div className="grid grid-cols-1 gap-8 items-end mb-14 pb-8 border-b border-black/10 md:grid-cols-2 md:gap-12">

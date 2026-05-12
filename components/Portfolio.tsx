@@ -55,7 +55,7 @@ export default async function Portfolio() {
   return (
     <section
       aria-labelledby="portfolio-heading"
-      className="border-t border-black/10 bg-gs-paper"
+      className="border-t border-black/10 bg-gs-paper bg-[#F3F1EA]"
     >
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
         <div className="mb-14">

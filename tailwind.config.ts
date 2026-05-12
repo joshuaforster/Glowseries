@@ -15,10 +15,10 @@ const config: Config = {
         "gs-ink":     "#0A0A0A",
       },
       fontFamily: {
-        anton:   ['"Anton"', "Helvetica Neue", "Arial", "sans-serif"],
-        archivo: ['"Archivo"', "Helvetica Neue", "Arial", "sans-serif"],
-        caveat:  ['"Caveat"', "cursive"],
-        mono:    ["ui-monospace", "SF Mono", "Menlo", "monospace"],
+        anton:   ["var(--font-display)", "Helvetica Neue", "Arial", "sans-serif"],
+        archivo: ["var(--font-archivo)", "Helvetica Neue", "Arial", "sans-serif"],
+        caveat:  ["var(--font-caveat)", "cursive"],
+        mono:    ["var(--font-mono)", "ui-monospace", "SF Mono", "Menlo", "monospace"],
       },
       screens: {
         sm:  "560px",

@@ -38,7 +38,7 @@ export default async function Process() {
   return (
     <section
       aria-labelledby="process-heading"
-      className="bg-gs-paper-2"
+      className="bg-gs-paper-2 bg-[#EAE8E1]"
     >
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_2fr] md:gap-20 md:items-start">

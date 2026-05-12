@@ -51,6 +51,7 @@ export default async function Packages() {
   return (
     <section
       aria-labelledby="packages-heading"
+      data-theme="dark"
       className="bg-black text-white border-t border-white/5"
     >
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">

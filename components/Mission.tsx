@@ -6,6 +6,7 @@ export default async function Mission() {
   return (
     <section
       aria-labelledby="mission-heading"
+      data-theme="dark"
       className="bg-black text-white text-gs-paper border-t border-gs-paper/[.08]"
     >
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">

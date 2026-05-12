@@ -8,11 +8,10 @@ export default async function Newsletter() {
     <section
       id="contact"
       aria-labelledby="newsletter-heading"
-      className="border-t border-black/10 bg-white"
+      className="border-t border-black/10 bg-gs-paper"
     >
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16 md:items-end">
-
           {/* Heading */}
           <div>
             <p className="font-archivo text-[11px] font-bold uppercase tracking-[.22em] text-gs-grey-4 mb-5">
@@ -79,7 +78,6 @@ export default async function Newsletter() {
               </p>
             </div>
           </div>
-
         </div>
       </div>
     </section>

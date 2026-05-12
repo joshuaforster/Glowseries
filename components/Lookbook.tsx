@@ -6,7 +6,7 @@ export default async function Lookbook() {
   return (
     <section
       aria-labelledby="lookbook-heading"
-      className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] min-h-[80vh] border-t border-black/10"
+      className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] min-h-[80vh] border-t border-black/10 bg-[#EAE8E0]"
     >
       {/* Image panel */}
       <div className="relative overflow-hidden bg-gs-grey-2 min-h-[60vh] md:min-h-0">

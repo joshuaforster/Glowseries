@@ -1,2 +1,36 @@
 @import "tailwindcss";
 
+@theme {
+  /* Breakpoints */
+  --breakpoint-sm: 560px;
+  --breakpoint-md: 980px;
+  --breakpoint-lg: 1280px;
+
+  /* Colors */
+  --color-gs-paper:   #F4F1EA;
+  --color-gs-paper-2: #ECE9E2;
+  --color-gs-white:   #FFFFFF;
+  --color-gs-grey-1:  #E7E7E7;
+  --color-gs-grey-2:  #C9C9C9;
+  --color-gs-grey-3:  #8A8A8A;
+  --color-gs-grey-4:  #5C5C5C;
+  --color-gs-ink:     #0A0A0A;
+
+  /* Font families — reference next/font vars via --nf-* to avoid Tailwind v4 namespace clash */
+  --font-anton:   var(--nf-display), "Helvetica Neue", Arial, sans-serif;
+  --font-archivo: var(--nf-archivo), "Helvetica Neue", Arial, sans-serif;
+  --font-caveat:  var(--nf-caveat), cursive;
+  --font-mono:    var(--nf-mono), ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* Barlow renders at Black weight for all display headings */
+.font-anton {
+  font-weight: 900;
+}
+
+/* Guarantee visible focus ring on any element we missed */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
