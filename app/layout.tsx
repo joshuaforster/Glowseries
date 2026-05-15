@@ -40,9 +40,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${barlow.variable} ${archivo.variable} ${caveat.variable} ${dmMono.variable}`}
+      className={`${barlow.variable} ${archivo.variable} ${caveat.variable} ${dmMono.variable} overflow-x-hidden`}
     >
-      <body className="text-gs-ink antialiased overflow-x-hidden">
+      <body className="text-gs-ink antialiased overflow-x-hidden max-w-[100vw]">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-gs-ink focus:text-gs-paper focus:font-archivo focus:text-sm focus:font-bold focus:uppercase focus:tracking-wider focus:rounded-full"
