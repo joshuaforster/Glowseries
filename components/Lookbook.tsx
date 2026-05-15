@@ -44,7 +44,7 @@ export default async function Lookbook() {
           {content.body}
         </p>
         <div>
-          <Button variant="primary" theme="light" href={content.cta.href}>
+          <Button variant="primary" theme="light" href={content.cta.href} className="w-full sm:w-auto justify-center">
             {content.cta.label}
           </Button>
         </div>

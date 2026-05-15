@@ -58,16 +58,16 @@ export default async function Newsletter() {
               <p className="font-archivo text-[14px] leading-[1.7] text-gs-grey-4 max-w-[36ch]">
                 {content.booking.body}
               </p>
-              <div className="mt-2 flex flex-wrap gap-3">
+              <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href={content.booking.primaryCta.href}
-                  className="btn-shimmer inline-flex items-center font-archivo text-[12px] font-bold uppercase tracking-[.2em] px-6 py-4 bg-gs-ink text-gs-paper border border-gs-ink rounded-full hover:bg-gs-grey-4 hover:border-gs-grey-4 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gs-ink focus-visible:ring-offset-2"
+                  className="btn-shimmer inline-flex items-center justify-center font-archivo text-[12px] font-bold uppercase tracking-[.2em] px-6 py-4 bg-gs-ink text-gs-paper border border-gs-ink rounded-full hover:bg-gs-grey-4 hover:border-gs-grey-4 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gs-ink focus-visible:ring-offset-2 w-full sm:w-auto"
                 >
                   {content.booking.primaryCta.label}
                 </a>
                 <a
                   href={content.booking.secondaryCta.href}
-                  className="btn-shimmer inline-flex items-center font-archivo text-[12px] font-bold uppercase tracking-[.2em] px-6 py-4 border border-gs-ink text-gs-ink rounded-full hover:bg-gs-ink hover:text-gs-paper transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gs-ink focus-visible:ring-offset-2"
+                  className="btn-shimmer inline-flex items-center justify-center font-archivo text-[12px] font-bold uppercase tracking-[.2em] px-6 py-4 border border-gs-ink text-gs-ink rounded-full hover:bg-gs-ink hover:text-gs-paper transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gs-ink focus-visible:ring-offset-2 w-full sm:w-auto"
                 >
                   {content.booking.secondaryCta.label}
                 </a>

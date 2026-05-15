@@ -61,16 +61,16 @@ export default async function Hero() {
               <p className="font-archivo text-base leading-relaxed text-white max-w-md">
                 {content.body}
               </p>
-              <div className="flex flex-row gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <a
                   href={content.primaryCta.href}
-                  className="inline-flex items-center justify-center font-archivo text-[11px] font-bold uppercase tracking-[.2em] px-8 py-4 bg-gs-paper text-gs-ink rounded-full transition-all hover:opacity-90 whitespace-nowrap"
+                  className="inline-flex items-center justify-center font-archivo text-[11px] font-bold uppercase tracking-[.2em] px-8 py-4 bg-gs-paper text-gs-ink rounded-full transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black w-full sm:w-auto"
                 >
                   {content.primaryCta.label}
                 </a>
                 <a
                   href={content.secondaryCta.href}
-                  className="inline-flex items-center justify-center font-archivo text-[11px] font-bold uppercase tracking-[.2em] px-8 py-4 border border-white text-white rounded-full backdrop-blur-sm bg-white/5 transition-all hover:bg-white/15 whitespace-nowrap"
+                  className="inline-flex items-center justify-center font-archivo text-[11px] font-bold uppercase tracking-[.2em] px-8 py-4 border border-white text-white rounded-full backdrop-blur-sm bg-white/5 transition-all hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black w-full sm:w-auto"
                 >
                   {content.secondaryCta.label}
                 </a>

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const linkCls =
   "nav-link-underline font-archivo text-[11px] font-bold uppercase tracking-[.22em] text-white hover:text-gs-grey-2 pb-0.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-sm [text-shadow:0_1px_4px_rgba(0,0,0,0.8)]";
@@ -21,17 +21,29 @@ const NAV_RIGHT: NavItem[] = [
 export default function Masthead() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+  const scrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 60);
+      setScrolling(true);
+      if (scrollTimer.current) clearTimeout(scrollTimer.current);
+      scrollTimer.current = setTimeout(() => setScrolling(false), 60);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (scrollTimer.current) clearTimeout(scrollTimer.current);
+    };
   }, []);
+
+  const transparent = scrolled && scrolling;
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-[300] border-b transition-all duration-500 ${
-        scrolled
+      className={`fixed inset-x-0 top-0 z-[300] border-b transition-all duration-700 ${
+        transparent
           ? "border-white/10 backdrop-blur-xl bg-transparent"
           : "border-transparent bg-black/90"
       }`}

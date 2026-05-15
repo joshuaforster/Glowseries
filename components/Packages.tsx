@@ -44,7 +44,7 @@ function PackageCard({
 
       {/* Price */}
       <div>
-        <div className="font-anton text-[72px] leading-[0.88] mb-2" aria-label={price}>
+        <div className="font-anton text-[clamp(48px,10vw,72px)] leading-[0.88] mb-2" aria-label={price}>
           <span aria-hidden="true">{price}</span>
         </div>
         <p className={`font-archivo text-[11px] uppercase tracking-[.18em] ${featured ? "text-gs-grey-4" : "text-gs-grey-2"}`}>

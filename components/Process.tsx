@@ -58,7 +58,7 @@ export default async function Process() {
               {content.body}
             </p>
             <div className="mt-8">
-              <Button variant="primary" theme="light" href={content.cta.href}>
+              <Button variant="primary" theme="light" href={content.cta.href} className="w-full sm:w-auto justify-center">
                 {content.cta.label}
               </Button>
             </div>

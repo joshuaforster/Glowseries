@@ -6,6 +6,7 @@ import Services   from "@/components/Services";
 import Packages   from "@/components/Packages";
 import Process    from "@/components/Process";
 import Portfolio  from "@/components/Portfolio";
+import Gallery    from "@/components/Gallery";
 import Lookbook   from "@/components/Lookbook";
 import Newsletter from "@/components/Newsletter";
 import Footer     from "@/components/Footer";
@@ -24,6 +25,7 @@ export default function Home() {
         <Packages />
         <Process />
         <Portfolio />
+        <Gallery />
         <Lookbook />
         <Newsletter />
       </main>

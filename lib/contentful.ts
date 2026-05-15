@@ -1,5 +1,15 @@
 import { createClient, Asset } from 'contentful';
 
+type RichTextNode = { nodeType: string; value?: string; content?: RichTextNode[] };
+
+function richTextToPlain(node: unknown): string {
+  const n = node as RichTextNode;
+  if (!n) return "";
+  if (n.nodeType === "text") return n.value ?? "";
+  if (Array.isArray(n.content)) return n.content.map(richTextToPlain).join("");
+  return "";
+}
+
 const accessToken = process.env.CONTENTFUL_DELIVERY_API!
 const space = process.env.CONTENTFUL_SPACE_ID!
 
@@ -171,6 +181,95 @@ export async function getPortfolio() {
       { n: "02", title: (fields.item2title as string) ?? "Deep Cobalt Wall", price: (fields.item2price as string) ?? "From £800", sub: (fields.item2sub as string) ?? "Norwich · Hand-applied", badge: (fields.item2badge as string) ?? "Venetian plaster", img: imgUrl(fields.item2image) },
       { n: "03", title: (fields.item3title as string) ?? "Warm Stone Wall", price: (fields.item3price as string) ?? "From £800", sub: (fields.item3sub as string) ?? "Norwich · Hand-applied", badge: (fields.item3badge as string) ?? "Venetian plaster", img: imgUrl(fields.item3image) },
     ]
+  }
+}
+
+export async function getGallery() {
+  const imgUrl = (field: unknown) => {
+    const asset = field as Asset
+    return asset?.fields?.file?.url ? `https:${asset.fields.file.url}` : ""
+  }
+
+  const defaults = {
+    eyebrow: "Gallery · Issue 01",
+    heading: "The work.",
+    items: [
+      {
+        n: "01",
+        title: "The Obsidian Room",
+        subtitle: "spaces that tell your story.",
+        body: "Every project begins with listening. We document the space, the light, the feeling you want clients to have — then build backwards from that moment.",
+        category: "Full transformation · Norwich",
+        image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1932&auto=format&fit=crop",
+        imageAlt: "Featured interior",
+      },
+      {
+        n: "02",
+        title: "Deep Cobalt Wall",
+        subtitle: "no two walls identical.",
+        body: "Hand-applied venetian plaster in deep cobalt. Warm to the touch, rich in depth. Applied on-site across Norwich and surrounding areas.",
+        category: "Venetian plaster · Norwich",
+        image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1958&auto=format&fit=crop",
+        imageAlt: "Deep cobalt venetian plaster wall",
+      },
+      {
+        n: "03",
+        title: "Bouclé Studio",
+        subtitle: "designed to the detail.",
+        body: "Textured surfaces, curated lighting, handcrafted furniture. A complete interior design concept realised in full.",
+        category: "Statement furniture · Norwich",
+        image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=870&auto=format&fit=crop",
+        imageAlt: "Interior detail 01",
+      },
+      {
+        n: "04",
+        title: "Warm Stone Finish",
+        subtitle: "installed in days.",
+        body: "Microcement and warm stone finishes applied across a full commercial space. From concept to completion in under two weeks.",
+        category: "Microcement · Norfolk",
+        image: "https://images.unsplash.com/photo-1567016432779-094069958ea5?q=80&w=870&auto=format&fit=crop",
+        imageAlt: "Interior detail 02",
+      },
+      {
+        n: "05",
+        title: "Walnut & Brass",
+        subtitle: "made to order.",
+        body: "Commissioned furniture with solid walnut tops, antique brass hardware and deep-relief croc texture. Built in our Norwich studio.",
+        category: "Bespoke furniture · Norwich",
+        image: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=870&auto=format&fit=crop",
+        imageAlt: "Interior detail 03",
+      },
+    ],
+  }
+
+  try {
+    const [headerRes, itemsRes] = await Promise.all([
+      client.getEntries({ content_type: "gallery" }),
+      client.getEntries({ content_type: "galleryItem", order: ["fields.number"] }),
+    ])
+
+    const hf = (headerRes.items[0]?.fields ?? {}) as Record<string, unknown>
+
+    const items = itemsRes.items.map((entry) => {
+      const f = entry.fields as Record<string, unknown>
+      return {
+        n: String(f.number ?? ""),
+        title: (f.title as string) ?? "",
+        subtitle: (f.subtitle as string) ?? "",
+        body: typeof f.body === "object" ? richTextToPlain(f.body) : (f.body as string) ?? "",
+        category: (f.category as string) ?? "",
+        image: imgUrl(f.image),
+        imageAlt: (f.imageAlt as string) ?? "",
+      }
+    })
+
+    return {
+      eyebrow: (hf.eyebrow as string) ?? defaults.eyebrow,
+      heading: (hf.heading as string) ?? defaults.heading,
+      items: items.length > 0 ? items : defaults.items,
+    }
+  } catch {
+    return defaults
   }
 }
 

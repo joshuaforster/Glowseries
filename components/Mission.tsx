@@ -31,7 +31,7 @@ export default async function Mission() {
               </p>
             ))}
             <div className="mt-7">
-              <Button variant="secondary" theme="dark" href={content.cta.href}>
+              <Button variant="secondary" theme="dark" href={content.cta.href} className="w-full sm:w-auto justify-center">
                 {content.cta.label}
               </Button>
             </div>
