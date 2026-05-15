@@ -7,6 +7,7 @@ export default async function Mission() {
 
   return (
     <section
+      id="studio"
       aria-labelledby="mission-heading"
       data-theme="dark"
       className="bg-black text-gs-paper border-t border-gs-paper/[.08]"

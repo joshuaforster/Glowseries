@@ -54,6 +54,7 @@ export default async function Portfolio() {
 
   return (
     <section
+      id="work"
       aria-labelledby="portfolio-heading"
       className="border-t border-black/10 bg-[#F3F1EA]"
     >

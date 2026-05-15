@@ -42,6 +42,7 @@ export default async function Services() {
 
   return (
     <section
+      id="services"
       aria-labelledby="services-heading"
       className="bg-[#F2F0E9]"
     >

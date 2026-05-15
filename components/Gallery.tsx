@@ -5,10 +5,12 @@ export default async function Gallery() {
   const { eyebrow, heading, items } = await getGallery();
 
   return (
-    <GalleryClient
-      eyebrow={eyebrow}
-      heading={heading}
-      items={items}
-    />
+    <section id="gallery">
+      <GalleryClient
+        eyebrow={eyebrow}
+        heading={heading}
+        items={items}
+      />
+    </section>
   );
 }

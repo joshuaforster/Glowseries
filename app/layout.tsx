@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Barlow, Archivo, Caveat, DM_Mono } from "next/font/google";
 import "./globals.css";
 import Cursor from "@/components/Cursor";
+import ScrollReset from "@/components/ScrollReset";
 
 const barlow = Barlow({
   weight: ["700", "800", "900"],
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to main content
         </a>
+        <ScrollReset />
         {children}
         <Cursor />
       </body>

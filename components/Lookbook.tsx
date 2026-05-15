@@ -27,7 +27,7 @@ export default async function Lookbook() {
       </div>
 
       {/* Content panel */}
-      <Reveal delay={80} className="flex flex-col justify-center gap-7 bg-gs-paper px-6 py-12 sm:px-10 sm:py-16 lg:px-14 lg:py-20">
+      <Reveal delay={80} className="flex flex-col justify-center gap-7 bg-gs-paper px-6 py-12 sm:px-10 sm:py-16 lg:pl-14 lg:py-20 lg:pr-14 xl:pr-[calc((100vw-80rem)/2+4rem)]">
         <p className="font-archivo text-[11px] font-bold uppercase tracking-[.22em] text-gs-grey-4">
           {content.eyebrow}
         </p>

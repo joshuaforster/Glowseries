@@ -96,7 +96,7 @@ export default function GalleryClient({ eyebrow, heading, items }: Props) {
       {/* Slider — crossfade */}
       <div
         ref={sliderRef}
-        className="relative h-[52vh] md:h-[65vh] overflow-hidden"
+        className="relative h-[40vh] md:h-[65vh] overflow-hidden"
         style={revealStyle(sliderVisible, 120)}
       >
         {items.map((item, i) => {
@@ -128,7 +128,7 @@ export default function GalleryClient({ eyebrow, heading, items }: Props) {
                     {item.category}
                   </p>
                   <p className="font-anton text-[clamp(72px,9vw,120px)] leading-none text-gs-ink/10 select-none">
-                    {item.n}°
+                    {String(item.n).padStart(2, "0")}°
                   </p>
                   <p className="font-anton text-[clamp(24px,3vw,44px)] leading-[0.92] tracking-[-0.01em] uppercase -mt-2">
                     {item.title}
@@ -146,7 +146,7 @@ export default function GalleryClient({ eyebrow, heading, items }: Props) {
                     {item.body}
                   </p>
                   <p className="font-archivo text-[10px] font-semibold uppercase tracking-[.18em] text-gs-grey-3 border-t border-black/10 pt-3">
-                    {item.n}° | {item.title}
+                    {String(item.n).padStart(2, "0")}° | {item.title}
                   </p>
                 </div>
               </div>
