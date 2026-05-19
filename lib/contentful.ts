@@ -144,6 +144,7 @@ export async function getPackages() {
 export async function getProcess() {
   const res = await client.getEntries({ content_type: "process" })
   const fields = res.items[0]?.fields ?? {}
+  console.log(fields)
 
   return {
     eyebrow: (fields.eyebrow as string) ?? "How it works",
@@ -154,10 +155,10 @@ export async function getProcess() {
       href: (fields.ctaHref as string) ?? "#contact",
     },
     steps: [
-      { n: "01", title: (fields.step1Title as string) ?? "Tell us about your space.", body: (fields.step1Body as string) ?? "Purchase a package and complete our short design brief. Send us your dimensions, existing photos, and what you want clients to feel when they walk in.", day: (fields.step1Day as string) ?? "Day 1" },
-      { n: "02", title: (fields.step2Title as string) ?? "We design your transformation.", body: (fields.step2Body as string) ?? "Our studio creates your full design concept — mood board, floor plan, material specification, feature wall concept and sourcing guide. Tailored entirely to your space.", day: (fields.step2Day as string) ?? "Days 2–7" },
-      { n: "03", title: (fields.step3Title as string) ?? "You review and approve.", body: (fields.step3Body as string) ?? "We walk you through every decision. You request revisions. We refine. When satisfied, you approve and we move to delivery or installation.", day: (fields.step3Day as string) ?? "Days 7–9" },
-      { n: "04", title: (fields.step4Title as string) ?? "Delivery or installation.", body: (fields.step4Body as string) ?? "Digital packages delivered as high-resolution PDF. Full transformation clients receive on-site installation — walls plastered, furniture installed, space styled and photographed.", day: (fields.step4Day as string) ?? "Days 10–14" },
+      { n: "01", title: (fields.step1title as string) ?? "Tell us about your space.", body: (fields.step1body as string) ?? "Purchase a package and complete our short design brief. Send us your dimensions, existing photos, and what you want clients to feel when they walk in.", day: (fields.step1day as string) ?? "Day 1" },
+      { n: "02", title: (fields.step2title as string) ?? "We design your transformation.", body: (fields.step2body as string) ?? "Our studio creates your full design concept — mood board, floor plan, material specification, feature wall concept and sourcing guide. Tailored entirely to your space.", day: (fields.step2day as string) ?? "Days 2–7" },
+      { n: "03", title: (fields.step3title as string) ?? "You review and approve.", body: (fields.step3body as string) ?? "We walk you through every decision. You request revisions. We refine. When satisfied, you approve and we move to delivery or installation.", day: (fields.step3day as string) ?? "Days 7–9" },
+      { n: "04", title: (fields.step4title as string) ?? "Delivery or installation.", body: (fields.step4body as string) ?? "Digital packages delivered as high-resolution PDF. Full transformation clients receive on-site installation — walls plastered, furniture installed, space styled and photographed.", day: (fields.step4day as string) ?? "Days 10–14" },
     ]
   }
 }

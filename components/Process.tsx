@@ -37,6 +37,7 @@ function StepRow({ n, title, body, day }: Step) {
 export default async function Process() {
   const content = await getProcess();
 
+
   return (
     <section
       aria-labelledby="process-heading"
